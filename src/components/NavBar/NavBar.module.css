@@ -1,0 +1,33 @@
+.nav {
+    grid-area: n;
+    background-color: burlywood;
+    padding: 20px;
+}
+
+.item a{
+    color: white;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: gold;
+}
+
+.settings {
+    margin-top: 30px;
+}
+
+.friends {
+    margin-top: 50px;
+}
+
+.image {
+    display: grid;
+    grid-template-columns: repeat(3, 70px);
+}
+
+.image img {
+    width: 50px;
+    border-radius: 50px;
+    padding-top: 5px;
+}
