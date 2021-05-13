@@ -10,7 +10,7 @@ export let store: StoreType = {
                 {id: 2, message: "It's my first Post!!", likeCount: 58},
                 {id: 3, message: "Are you ready....", likeCount: 17}
             ],
-            newPostText: "it-kamasutra.com"
+            newPostText: "it-max.com"
         },
         dialogsPage: {
             dialogs:[
@@ -48,34 +48,6 @@ export let store: StoreType = {
         this._callSubscriber = observer
     },
 
-    addPost (newPostText: string) {
-        const newPost: PostType = {
-            id: 4,
-            message: this._state.profilePage.newPostText,
-            likeCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ""
-        this._callSubscriber();
-    },
-    updateNewPostText (newPost: string) {
-        this._state.profilePage.newPostText = newPost
-        this._callSubscriber();
-    },
-    addMessage (newMessageText: string) {
-        const newMessage: MessageType = {
-            id: 6,
-            message: this._state.dialogsPage.newMessageText
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ""
-        this._callSubscriber();
-    },
-    updateNewMessageText (newMessage: string) {
-        this._state.dialogsPage.newMessageText = newMessage
-        this._callSubscriber();
-    },
-
     dispatch (action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
@@ -87,10 +59,6 @@ export let store: StoreType = {
 
 export type StoreType = {
     _state: RootStateType,
-    addPost: (newPostText: string) => void,
-    updateNewPostText: (newPost: string) => void,
-    addMessage: (newMessageText: string) => void,
-    updateNewMessageText: (newMessage: string) => void,
     _callSubscriber: () => void,
     subscribe: (observer: () => void) => void,
     getState: () => RootStateType,

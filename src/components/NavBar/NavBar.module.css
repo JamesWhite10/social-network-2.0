@@ -24,6 +24,7 @@
 .image {
     display: grid;
     grid-template-columns: repeat(3, 70px);
+    text-align: center;
 }
 
 .image img {
