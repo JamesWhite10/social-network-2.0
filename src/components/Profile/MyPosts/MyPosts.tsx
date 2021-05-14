@@ -1,14 +1,14 @@
 import React, {ChangeEvent} from "react";
 import classes from "./MyPosts.module.css"
 import {Posts} from "./Post/Post";
-import {ActionsType, PostType} from "../../../redux/store";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
+import {PostType} from "../../../redux/store";
 
 
 type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: ActionsType) => void
+    addPost: () => void
+    onPostChange: (post: string) => void
 }
 
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -16,12 +16,13 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let postsElements =
         props.posts.map(p => <Posts key={p.id} message={p.message} likeCount={p.likeCount}/>)
 
-    const addPost = () => {
-            props.dispatch(addPostActionCreator(props.newPostText));
+    const onAddPost = () => {
+            props.addPost()
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
+        let post = e.currentTarget.value
+        props.onPostChange(post)
     }
 
     return (
@@ -32,7 +33,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                     <textarea onChange={onPostChange}
                               value={props.newPostText}/>
                 </div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={classes.posts}>
                 {postsElements}
