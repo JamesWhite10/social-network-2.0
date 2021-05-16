@@ -15,6 +15,6 @@ type RootReducersType = typeof reducers
 
 export type AppStateType = ReturnType<RootReducersType>
 
-export type StoreType = typeof store
+export type StoreReduxType = typeof store
 
 export default store

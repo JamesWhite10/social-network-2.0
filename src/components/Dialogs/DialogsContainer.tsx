@@ -1,32 +1,34 @@
 import React from "react";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
-import {StoreType} from "../../redux/redux-store";
-import { Dialogs } from "./Dialogs";
+import {Dialogs} from "./Dialogs";
+import {Provider, StoreContext} from "../../StoreContext";
+import store, {StoreReduxType} from "../../redux/redux-store";
 
-
-type DialogsContainerType = {
-    store: StoreType
-}
-
-const DialogsContainer: React.FC<DialogsContainerType> = (props) => {
-
-    let state = props.store.getState()
-
-    const newMessage = () => {
-        props.store.dispatch(addMessageActionCreator(state.dialogsPage.newMessageText))
-    }
-
-    const onMessageChange = (message: string) => {
-        props.store.dispatch(updateNewMessageTextActionCreator(message))
-    }
-
+const DialogsContainer = () => {
     return (
-        <Dialogs
-            dialogs={state.dialogsPage.dialogs}
-            messages={state.dialogsPage.messages}
-            newMessageText={state.dialogsPage.newMessageText}
-            newMessage={newMessage}
-            onMessageChange={onMessageChange}/>
+        <StoreContext.Consumer>
+            {
+                (store: StoreReduxType) => {
+
+                    let state = store.getState()
+
+                    const newMessage = () => {
+                        store.dispatch(addMessageActionCreator(state.dialogsPage.newMessageText))
+                    }
+
+                    const onMessageChange = (message: string) => {
+                        store.dispatch(updateNewMessageTextActionCreator(message))
+                    }
+
+                    return <Dialogs
+                        dialogs={state.dialogsPage.dialogs}
+                        messages={state.dialogsPage.messages}
+                        newMessageText={state.dialogsPage.newMessageText}
+                        newMessage={newMessage}
+                        onMessageChange={onMessageChange}/>
+                }
+            }
+        </StoreContext.Consumer>
     )
 }
 
