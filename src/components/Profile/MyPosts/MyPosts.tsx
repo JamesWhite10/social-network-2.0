@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import classes from "./MyPosts.module.css"
 import {Posts} from "./Post/Post";
 import {PostType} from "../../../redux/store";
+import Button from "@material-ui/core/Button";
+import {TextField} from "@material-ui/core";
 
 
 type MyPostsPropsType = {
@@ -17,7 +19,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         props.posts.map(p => <Posts key={p.id} message={p.message} likeCount={p.likeCount}/>)
 
     const onAddPost = () => {
-            props.addPost()
+        props.addPost()
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -30,10 +32,19 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange}
-                              value={props.newPostText}/>
+                    <TextField
+                        variant={"outlined"}
+                        label={"Post"}
+                        style={{backgroundColor: "LightCyan"}}
+                        onChange={onPostChange}
+                        value={props.newPostText}/>
                 </div>
-                <button onClick={onAddPost}>Add post</button>
+                <Button
+                    variant={"contained"}
+                    color={"secondary"}
+                    style={{marginTop: "10px"}}
+                    size={"small"}
+                    onClick={onAddPost}>Add post</Button>
             </div>
             <div className={classes.posts}>
                 {postsElements}

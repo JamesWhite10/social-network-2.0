@@ -3,6 +3,8 @@ import classes from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogType, MessageType} from "../../redux/store";
+import Button from "@material-ui/core/Button";
+import {TextField} from "@material-ui/core";
 
 
 type DialogsPropsType = {
@@ -35,12 +37,16 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <textarea
+                <TextField
                     onChange={onMessageChange}
                     value={props.newMessageText}
                     placeholder="Enter your message"/>
                 <div>
-                    <button onClick={newMessage}>Send</button>
+                    <Button
+                        variant={"contained"}
+                        style={{marginTop: "10px"}}
+                        color={"primary"}
+                        onClick={newMessage}>Send</Button>
                 </div>
             </div>
         </div>

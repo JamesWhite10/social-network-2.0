@@ -1,8 +1,8 @@
 .header {
     grid-area: h;
-    background-color: chocolate;
+    background: linear-gradient(to top right, purple, crimson, orangered, gold);;
 }
 
 .header img {
-    width: 100px;
+    width: 105px;
 }
