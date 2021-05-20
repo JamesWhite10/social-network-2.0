@@ -2,20 +2,11 @@ import React, {ChangeEvent} from "react";
 import classes from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogType, MessageType} from "../../redux/store";
 import Button from "@material-ui/core/Button";
 import {TextField} from "@material-ui/core";
+import {DialogsPropsType} from "./DialogsContainer";
 
-
-type DialogsPropsType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageText: string
-    newMessage: () => void
-    onMessageChange: (message: string) => void
-}
-
-export const Dialogs: React.FC<DialogsPropsType> = (props) => {
+export function Dialogs (props: DialogsPropsType) {
 
     let dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} avatar={d.avatar}/>)
 

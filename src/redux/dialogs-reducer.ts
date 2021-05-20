@@ -5,13 +5,13 @@ import {
     UpdateNewMessageActionType
 } from "./store";
 
-type InitialStateType = {
+export type InitialStateDialogsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageText: string
 }
 
-const initialState: InitialStateType = {
+const initialState: InitialStateDialogsType = {
     dialogs:[
         {id: 1, name: "Anna", avatar: "https://sefon.pro/img/artist_photos/ava-max.jpg"},
         {id: 2, name: "Max", avatar: "https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/d2/27/7b/d2277b15-bd32-0545-920e-8efc1767fc25/source/512x512bb.jpg"},
@@ -29,7 +29,7 @@ const initialState: InitialStateType = {
     newMessageText: ""
 }
 
-const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ActionsType): InitialStateDialogsType => {
 
     switch (action.type) {
         case "ADD-MESSAGE":

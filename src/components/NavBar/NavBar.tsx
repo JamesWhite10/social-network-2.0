@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
+import React  from "react";
 import {NavLink} from "react-router-dom";
 import classes from "./NavBar.module.css"
 import {Friends} from "../Friends/Friends";
-import {StoreContext} from "../../StoreContext";
+import store from "../../redux/redux-store";
 
 export const NavBar = () => {
-    const store = useContext(StoreContext)
+
     let friendElement = store.getState().sidebar.friends.map(i => <Friends name={i.name} image={i.image}/>)
 
     return <nav className={classes.nav}>

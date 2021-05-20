@@ -1,19 +1,11 @@
 import React, {ChangeEvent} from "react";
 import classes from "./MyPosts.module.css"
 import {Posts} from "./Post/Post";
-import {PostType} from "../../../redux/store";
 import Button from "@material-ui/core/Button";
 import {TextField} from "@material-ui/core";
+import {MyPostPropsType} from "./MyPostsContainer";
 
-
-type MyPostsPropsType = {
-    posts: Array<PostType>
-    newPostText: string
-    addPost: () => void
-    onPostChange: (post: string) => void
-}
-
-export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+export function MyPosts (props: MyPostPropsType) {
 
     let postsElements =
         props.posts.map(p => <Posts key={p.id} message={p.message} likeCount={p.likeCount}/>)
