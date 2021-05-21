@@ -6,29 +6,28 @@ type InitialStateType = {
 }
 
 const initialState: InitialStateType = {
-        posts: [
-            {id: 1, message: "Hi, how are you?", likeCount: 23},
-            {id: 2, message: "It's my first Post!!", likeCount: 58},
-            {id: 3, message: "Are you ready....", likeCount: 17}
-        ],
-        newPostText: "it-max.com"
+    posts: [
+        {id: 1, message: "Hi, how are you?", likeCount: 23},
+        {id: 2, message: "It's my first Post!!", likeCount: 58},
+        {id: 3, message: "Are you ready....", likeCount: 17}
+    ],
+    newPostText: "it-max.com"
 }
 
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
-
     switch (action.type) {
         case "ADD-POST":
-            const newPost: PostType = {
-                id: 4,
-                message: state.newPostText,
-                likeCount: 0
+            const newPost = state.newPostText
+            return {
+                ...state,
+                posts: [...state.posts, {id: 4, message: newPost, likeCount: 0}],
+                newPostText: ""
             }
-            state.posts.push(newPost)
-            state.newPostText = ""
-            return state
         case "UPDATE-NEW-POST-TEXT":
-            state.newPostText = action.newPost
-            return state
+            return {
+                ...state,
+                newPostText: action.newPost
+            }
         default:
             return state
     }

@@ -6,7 +6,7 @@ import store from "../../redux/redux-store";
 
 export const NavBar = () => {
 
-    let friendElement = store.getState().sidebar.friends.map(i => <Friends name={i.name} image={i.image}/>)
+    let friendElement = store.getState().sidebar.friends.map(i => <Friends key={i.id} name={i.name} image={i.image}/>)
 
     return <nav className={classes.nav}>
         <div className={`${classes.item} ${classes.active}`}>
@@ -30,7 +30,7 @@ export const NavBar = () => {
             <div className={classes.friends}>
                 <NavLink to="/friends" activeClassName={classes.activeLink}>Friends</NavLink>
                 <div className={classes.image}>
-                    {friendElement}
+                    {friendElement}<button className={classes.button}>Message</button>
                 </div>
             </div>
         </div>
