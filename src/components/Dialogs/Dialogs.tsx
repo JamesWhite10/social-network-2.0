@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import {TextField} from "@material-ui/core";
 import {DialogsPropsType} from "./DialogsContainer";
 
-export function Dialogs (props: DialogsPropsType) {
+export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     let dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} avatar={d.avatar}/>)
 

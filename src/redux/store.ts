@@ -65,7 +65,7 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageActionType
+export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -85,6 +85,21 @@ export type AddMessageActionType = {
 export type UpdateNewMessageActionType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newMessage: string
+}
+
+export type FollowActionType = {
+    type: "FOLLOW"
+    userId: number
+}
+
+export type UnFollowActionType = {
+    type: "UN-FOLLOW"
+    userId: number
+}
+
+export type SetUsersActionType = {
+    type: "SET-USERS"
+    users: []
 }
 
 export type MessageType = {
@@ -119,6 +134,18 @@ export type FriendsType = {
     id: number
     name: string
     image: string
+}
+
+export type UsersType = {
+    id: number
+    photoUrl: string
+    followed: boolean
+    fullName: string
+    status: string
+    location: {
+        city: string
+        country: string
+    }
 }
 
 export type SidebarType = {
