@@ -99,7 +99,7 @@ export type UnFollowActionType = {
 
 export type SetUsersActionType = {
     type: "SET-USERS"
-    users: []
+    users: Array<UsersType>
 }
 
 export type MessageType = {

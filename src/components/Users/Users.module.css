@@ -1,4 +1,43 @@
+.users {
+    display: flex;
+    align-items: flex-start;
+    margin: 10px;
+}
+
 .userPhoto {
     width: 100px;
     border-radius: 100px;
 }
+
+.button {
+    text-align: center;
+}
+
+.userInfo {
+    padding: 20px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: white;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    color: rebeccapurple;
+}
+
+.status {
+    font-family: sans-serif;
+    min-width: 150px;
+    max-width: 300px;
+    word-wrap: break-word;
+    color: indigo;
+}
+
+.location {
+    color: crimson;
+    display: flex;
+    justify-content: flex-end;
+}
+
