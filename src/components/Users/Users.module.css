@@ -1,7 +1,8 @@
 .users {
     display: flex;
     align-items: flex-start;
-    margin: 10px;
+    margin: 45px;
+    text-align: center;
 }
 
 .userPhoto {
