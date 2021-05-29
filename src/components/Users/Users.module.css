@@ -1,7 +1,13 @@
+.getUsers {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
 .users {
-    display: flex;
-    align-items: flex-start;
-    margin: 45px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    margin: 40px;
     text-align: center;
 }
 
