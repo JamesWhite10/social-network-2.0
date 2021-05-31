@@ -23,7 +23,7 @@ export const NavBar = () => {
         </div>
         <div className={`${classes.item} ${classes.active}`}>
             <div className={classes.users}>
-            <NavLink to="/users" activeClassName={classes.activeLink}>Find users</NavLink>
+            <NavLink to="/users" activeClassName={classes.activeLink}>Users</NavLink>
             </div>
         </div>
         <div className={`${classes.item} ${classes.active}`}>
