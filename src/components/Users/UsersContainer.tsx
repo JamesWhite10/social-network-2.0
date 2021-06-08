@@ -17,6 +17,7 @@ interface IUsersProps {
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    isFetching: boolean
 }
 
 interface IUsersState {
@@ -41,14 +42,18 @@ class UsersContainer extends React.Component<IUsersProps, IUsersState> {
     }
 
     render() {
-        return <Users
-            users={this.props.users}
-            pageSize={this.props.pageSize}
-            totalUsersCount={this.props.totalUsersCount}
-            currentPage={this.props.currentPage}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            onClickPageUsers={this.onClickPageUsers}/>
+        return <>
+            {this.props.isFetching ? <img/> : null}
+            <Users
+                users={this.props.users}
+                pageSize={this.props.pageSize}
+                totalUsersCount={this.props.totalUsersCount}
+                currentPage={this.props.currentPage}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+                onClickPageUsers={this.onClickPageUsers}
+            />
+        </>
     }
 }
 
@@ -57,6 +62,7 @@ type MapStatePropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 type MapDispatchPropsType = {
@@ -73,6 +79,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
@@ -95,5 +102,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export  default connect (mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
 
