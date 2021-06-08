@@ -65,7 +65,10 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageActionType | FollowActionType | UnFollowActionType | SetUsersActionType
+export type ActionsType = AddPostActionType | UpdateNewPostActionType
+    | AddMessageActionType | UpdateNewMessageActionType
+    | FollowActionType | UnFollowActionType
+    | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -100,6 +103,16 @@ export type UnFollowActionType = {
 export type SetUsersActionType = {
     type: "SET-USERS"
     users: Array<UsersType>
+}
+
+export type SetCurrentPageType = {
+    type: "SET-CURRENT-PAGE"
+    currentPage: number
+}
+
+export type SetTotalUsersCountType = {
+    type: "SET-TOTAL-USERS-COUNT"
+    totalUsersCount: number
 }
 
 export type MessageType = {
