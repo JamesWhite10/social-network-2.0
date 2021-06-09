@@ -69,6 +69,7 @@ export type ActionsType = AddPostActionType | UpdateNewPostActionType
     | AddMessageActionType | UpdateNewMessageActionType
     | FollowActionType | UnFollowActionType
     | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
+    | SetIsFetchingType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -113,6 +114,11 @@ export type SetCurrentPageType = {
 export type SetTotalUsersCountType = {
     type: "SET-TOTAL-USERS-COUNT"
     totalUsersCount: number
+}
+
+export type SetIsFetchingType = {
+    type: "TOGGLE-IS-FETCHING"
+    isFetching: boolean
 }
 
 export type MessageType = {

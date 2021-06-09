@@ -1,7 +1,7 @@
 import {
     ActionsType,
     FollowActionType,
-    SetCurrentPageType, SetTotalUsersCountType,
+    SetCurrentPageType, SetIsFetchingType, SetTotalUsersCountType,
     SetUsersActionType,
     UnFollowActionType,
     UsersType
@@ -17,7 +17,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
     users: [],
-    pageSize: 10,
+    pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
@@ -52,6 +52,8 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
             return {...state, currentPage: action.currentPage}
         case "SET-TOTAL-USERS-COUNT":
             return {...state, totalUsersCount: action.totalUsersCount}
+        case "TOGGLE-IS-FETCHING":
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -62,5 +64,6 @@ export const unfollowAC = (userId: number): UnFollowActionType => ({type: "UN-FO
 export const setUsersAC = (users: Array<UsersType>): SetUsersActionType => ({type: "SET-USERS", users}) // показать(установить) пользователей
 export const setCurrentPageAC = (currentPage: number): SetCurrentPageType => ({type: "SET-CURRENT-PAGE", currentPage}) // текущая страница
 export const setTotalUsersCountAC = (totalUsersCount: number): SetTotalUsersCountType => ({type: "SET-TOTAL-USERS-COUNT", totalUsersCount}) // общее колличество пользователей
+export const setIsFetchingAC = (isFetching: boolean): SetIsFetchingType => ({type: "TOGGLE-IS-FETCHING", isFetching}) // для иконки прелоадера
 
 export default usersReducer;
