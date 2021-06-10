@@ -59,11 +59,11 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
     }
 }
 
-export const followAC = (userId: number): FollowActionType => ({type: "FOLLOW", userId}) // подписаться на пользователя
-export const unfollowAC = (userId: number): UnFollowActionType => ({type: "UN-FOLLOW", userId}) // отписаться от пользователя
-export const setUsersAC = (users: Array<UsersType>): SetUsersActionType => ({type: "SET-USERS", users}) // показать(установить) пользователей
-export const setCurrentPageAC = (currentPage: number): SetCurrentPageType => ({type: "SET-CURRENT-PAGE", currentPage}) // текущая страница
-export const setTotalUsersCountAC = (totalUsersCount: number): SetTotalUsersCountType => ({type: "SET-TOTAL-USERS-COUNT", totalUsersCount}) // общее колличество пользователей
-export const setIsFetchingAC = (isFetching: boolean): SetIsFetchingType => ({type: "TOGGLE-IS-FETCHING", isFetching}) // для иконки прелоадера
+export const follow = (userId: number): FollowActionType => ({type: "FOLLOW", userId}) // подписаться на пользователя
+export const unfollow = (userId: number): UnFollowActionType => ({type: "UN-FOLLOW", userId}) // отписаться от пользователя
+export const setUsers = (users: Array<UsersType>): SetUsersActionType => ({type: "SET-USERS", users}) // показать(установить) пользователей
+export const setCurrentPage = (currentPage: number): SetCurrentPageType => ({type: "SET-CURRENT-PAGE", currentPage}) // текущая страница
+export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountType => ({type: "SET-TOTAL-USERS-COUNT", totalUsersCount}) // общее колличество пользователей
+export const setIsFetching = (isFetching: boolean): SetIsFetchingType => ({type: "TOGGLE-IS-FETCHING", isFetching}) // для иконки прелоадера
 
 export default usersReducer;
