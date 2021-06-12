@@ -1,11 +1,20 @@
-import {ActionsType, AddPostActionType, PostType, UpdateNewPostActionType} from "./store";
+import {
+    ActionsType,
+    AddPostActionType,
+    PostType, ProfileType,
+    SetUserProfileType,
+    UpdateNewPostActionType
+} from "./store";
 
 type InitialStateType = {
+    profile: ProfileType | null
     posts: Array<PostType>
     newPostText: string
+
 }
 
 const initialState: InitialStateType = {
+    profile: null,
     posts: [
         {id: 1, message: "Hi, how are you?", likeCount: 23},
         {id: 2, message: "It's my first Post!!", likeCount: 58},
@@ -28,6 +37,10 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 ...state,
                 newPostText: action.newPost
             }
+        case "SET-USER-PROFILE":
+            return {
+                ...state, profile: action.profile
+            }
         default:
             return state
     }
@@ -41,6 +54,10 @@ export const addPostActionCreator = (newPostText: string): AddPostActionType => 
 export const updateNewPostTextActionCreator = (newPost: string): UpdateNewPostActionType => ({
     type: "UPDATE-NEW-POST-TEXT",
     newPost: newPost
+})
+
+export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({
+    type: "SET-USER-PROFILE", profile
 })
 
 export default profileReducer;

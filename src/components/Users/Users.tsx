@@ -3,6 +3,7 @@ import classes from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {Button} from "@material-ui/core";
 import {UsersType} from "../../redux/store";
+import { NavLink } from "react-router-dom";
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -39,8 +40,10 @@ let Users: React.FC<UsersPropsType> = (props) => {
                 props.users.map(u => <div key={u.id}>
 
                     <div>
+                        <NavLink to={"/profile/" + u.id}>
                         <img src={u.photos.small != null ? u.photos.small : userPhoto} alt={"avatar"}
                              className={classes.userPhoto}/>
+                        </NavLink>
                     </div>
                     <div className={classes.button}>
                         {u.followed

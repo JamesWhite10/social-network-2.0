@@ -19,12 +19,12 @@ interface IUsersProps {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
-    isFetching: boolean
     setIsFetching: (isFetching: boolean) => void
 }
 
@@ -55,7 +55,7 @@ class UsersContainer extends React.Component<IUsersProps, IUsersState> {
 
     render() {
         return <>
-            <Preloader isFetching={this.props.isFetching}/>
+            {this.props.isFetching ? <Preloader/> : null}
             <Users
                 users={this.props.users}
                 pageSize={this.props.pageSize}

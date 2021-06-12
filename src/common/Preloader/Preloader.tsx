@@ -1,14 +1,10 @@
 import React from "react";
 import preloader from "../../assets/images/preloader.svg"
 
-type PreloaderPropsType = {
-    isFetching: boolean
-}
-
-const Preloader: React.FC<PreloaderPropsType> = (props) => {
+const Preloader: React.FC = () => {
     return (
         <div>
-            {props.isFetching ? <img src={preloader} alt={"preloader"}/> : null}
+            <img style={{marginTop: "125px"}} src={preloader} alt={"preloader"}/>
         </div>
     )
 }

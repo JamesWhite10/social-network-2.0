@@ -5,6 +5,7 @@ import sidebarReducer from "./sidebar-reducer";
 export let store: StoreType = {
     _state: {
         profilePage: {
+            profile: null,
             posts: [
                 {id: 1, message: "Hi, how are you?", likeCount: 23},
                 {id: 2, message: "It's my first Post!!", likeCount: 58},
@@ -69,7 +70,7 @@ export type ActionsType = AddPostActionType | UpdateNewPostActionType
     | AddMessageActionType | UpdateNewMessageActionType
     | FollowActionType | UnFollowActionType
     | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
-    | SetIsFetchingType
+    | SetIsFetchingType | SetUserProfileType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -121,6 +122,11 @@ export type SetIsFetchingType = {
     isFetching: boolean
 }
 
+export type SetUserProfileType = {
+    type: "SET-USER-PROFILE",
+    profile: ProfileType
+}
+
 export type MessageType = {
     id: number
     message: string
@@ -145,6 +151,7 @@ export type DialogPageType = {
 }
 
 export type ProfilePageType = {
+    profile: ProfileType | null
     posts: Array<PostType>
     newPostText: string
 }
@@ -167,6 +174,28 @@ export type UsersType = {
     location: {
         city: string
         country: string
+    }
+}
+
+export type ProfileType = {
+    aboutMe: string,
+    contacts: {
+        facebook: string,
+        website: string | null,
+        vk: string,
+        twitter: string,
+        instagram: string,
+        youtube: string | null,
+        github: string,
+        mainLink: string | null
+    },
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullName: string,
+    userId: number | string,
+    photos: {
+        small: string,
+        large: string
     }
 }
 
