@@ -1,7 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import classes from "./Header.module.css"
-import logo from "../../assets/images/user.png";
 
 type HeaderPropsType = {
     data: {
