@@ -70,7 +70,7 @@ export type ActionsType = AddPostActionType | UpdateNewPostActionType
     | AddMessageActionType | UpdateNewMessageActionType
     | FollowActionType | UnFollowActionType
     | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
-    | SetIsFetchingType | SetUserProfileType
+    | SetIsFetchingType | SetUserProfileType | SetUserData
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -125,6 +125,15 @@ export type SetIsFetchingType = {
 export type SetUserProfileType = {
     type: "SET-USER-PROFILE",
     profile: ProfileType
+}
+
+export type SetUserData = {
+    type: "SET-USER-DATA"
+    data: {
+        id: number | null
+        email: string | null
+        login: string | null
+    }
 }
 
 export type MessageType = {
