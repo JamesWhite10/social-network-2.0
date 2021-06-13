@@ -131,8 +131,8 @@ export type SetUserData = {
     type: "SET-USER-DATA"
     data: {
         id: number | null
-        email: string | null
         login: string | null
+        email: string | null
     }
 }
 

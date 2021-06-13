@@ -6,8 +6,8 @@ import {
 type InitialStateType = {
     data: {
         id: number | null
-        email: string | null
         login: string | null
+        email: string | null
     }
     isAuth: boolean
 }
@@ -15,8 +15,8 @@ type InitialStateType = {
 const initialState: InitialStateType = {
     data: {
         id: null,
-        email: null,
         login: null,
+        email: null,
     },
     isAuth: false
 }
@@ -35,8 +35,8 @@ const authReducer = (state: InitialStateType = initialState, action: ActionsType
 
 export const setAuthUserData = ( data: {
     id: number | null
-    email: string | null
     login: string | null
+    email: string | null
 }): SetUserData => ({type: "SET-USER-DATA", data})
 
 export default authReducer;
