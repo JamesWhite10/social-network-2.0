@@ -4,6 +4,7 @@ import userPhoto from "../../assets/images/user.png";
 import {Button} from "@material-ui/core";
 import {UsersType} from "../../redux/store";
 import {NavLink} from "react-router-dom";
+import {subscriptionDeleteAPI, subscriptionPostAPI} from "../../api/api";
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -47,12 +48,28 @@ let Users: React.FC<UsersPropsType> = (props) => {
                     </div>
                     <div className={classes.button}>
                         {u.followed
-                            ? <Button variant={"contained"} size={"small"} color={"secondary"} onClick={() => {
-                                props.unfollow(u.id)
-                            }}>Unfollow</Button>
-                            : <Button variant={"contained"} size={"small"} color={"primary"} onClick={() => {
-                                props.follow(u.id)
-                            }}>Follow</Button>}
+                            ? <Button
+                                variant={"contained"}
+                                size={"small"}
+                                color={"secondary"}
+                                onClick={() => {
+                                    subscriptionDeleteAPI.deleteSubscription(u.id).then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.unfollow(u.id)
+                                            }
+                                        })
+                                }}>Unfollow</Button>
+                            : <Button
+                                variant={"contained"}
+                                size={"small"}
+                                color={"primary"}
+                                onClick={() => {
+                                    subscriptionPostAPI.postSubscription(u.id).then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.follow(u.id)
+                                            }
+                                        })
+                                }}>Follow</Button>}
                     </div>
 
                     <div className={classes.userInfo}>
