@@ -3,7 +3,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {UsersType} from "../../redux/store";
 import {
     follow,
-    setCurrentPage, setIsFetching,
+    setCurrentPage, setIsFetching, setIsFollowingInProgress,
     setTotalUsersCount,
     setUsers,
     unfollow
@@ -20,12 +20,14 @@ interface IUsersProps {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: []
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
+    setIsFollowingInProgress: (followingInProgress: boolean, userId: number) => void
 }
 
 interface IUsersState {
@@ -63,6 +65,8 @@ class UsersContainer extends React.Component<IUsersProps, IUsersState> {
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
                 onClickPageUsers={this.onClickPageUsers}
+                setIsFollowingInProgress={this.props.setIsFollowingInProgress}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
     }
@@ -74,6 +78,7 @@ type MapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: []
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
@@ -82,11 +87,12 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 }
 
 export default connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching, setIsFollowingInProgress
 })(UsersContainer)
 

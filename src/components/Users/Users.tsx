@@ -11,9 +11,11 @@ type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    followingInProgress: []
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onClickPageUsers: (pageNumber: number) => void
+    setIsFollowingInProgress: (followingInProgress: boolean, userId: number) => void
 }
 
 let Users: React.FC<UsersPropsType> = (props) => {
@@ -49,26 +51,32 @@ let Users: React.FC<UsersPropsType> = (props) => {
                     <div className={classes.button}>
                         {u.followed
                             ? <Button
+                                disabled={props.followingInProgress.some(id => id === u.id)}
                                 variant={"contained"}
                                 size={"small"}
                                 color={"secondary"}
                                 onClick={() => {
+                                    props.setIsFollowingInProgress(true, u.id)
                                     subscriptionDeleteAPI.deleteSubscription(u.id).then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.unfollow(u.id)
-                                            }
-                                        })
+                                        if (data.resultCode === 0) {
+                                            props.unfollow(u.id)
+                                        }
+                                        props.setIsFollowingInProgress(false, u.id)
+                                    })
                                 }}>Unfollow</Button>
                             : <Button
+                                disabled={props.followingInProgress.some(id => id === u.id)}
                                 variant={"contained"}
                                 size={"small"}
                                 color={"primary"}
                                 onClick={() => {
+                                    props.setIsFollowingInProgress(true, u.id)
                                     subscriptionPostAPI.postSubscription(u.id).then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.follow(u.id)
-                                            }
-                                        })
+                                        if (data.resultCode === 0) {
+                                            props.follow(u.id)
+                                        }
+                                        props.setIsFollowingInProgress(false, u.id)
+                                    })
                                 }}>Follow</Button>}
                     </div>
 

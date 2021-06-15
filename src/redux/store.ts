@@ -71,6 +71,7 @@ export type ActionsType = AddPostActionType | UpdateNewPostActionType
     | FollowActionType | UnFollowActionType
     | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
     | SetIsFetchingType | SetUserProfileType | SetUserData
+    | SetIsFollowingInProgressType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -125,6 +126,12 @@ export type SetIsFetchingType = {
 export type SetUserProfileType = {
     type: "SET-USER-PROFILE",
     profile: ProfileType
+}
+
+export type SetIsFollowingInProgressType = {
+    type: "TOGGLE-IS-FOLLOWING-PROGRESS"
+    followingInProgress: boolean
+    userId: number
 }
 
 export type SetUserData = {
