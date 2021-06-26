@@ -4,7 +4,6 @@ import userPhoto from "../../assets/images/user.png";
 import {Button} from "@material-ui/core";
 import {UsersType} from "../../redux/store";
 import {NavLink} from "react-router-dom";
-import {subscriptionDeleteAPI, subscriptionPostAPI} from "../../api/api";
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -12,10 +11,10 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     followingInProgress: []
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
     onClickPageUsers: (pageNumber: number) => void
     setIsFollowingInProgress: (followingInProgress: boolean, userId: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 let Users: React.FC<UsersPropsType> = (props) => {
@@ -55,29 +54,13 @@ let Users: React.FC<UsersPropsType> = (props) => {
                                 variant={"contained"}
                                 size={"small"}
                                 color={"secondary"}
-                                onClick={() => {
-                                    props.setIsFollowingInProgress(true, u.id)
-                                    subscriptionDeleteAPI.deleteSubscription(u.id).then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.unfollow(u.id)
-                                        }
-                                        props.setIsFollowingInProgress(false, u.id)
-                                    })
-                                }}>Unfollow</Button>
+                                onClick={() => {props.unfollow(u.id)}}>Unfollow</Button>
                             : <Button
                                 disabled={props.followingInProgress.some(id => id === u.id)}
                                 variant={"contained"}
                                 size={"small"}
                                 color={"primary"}
-                                onClick={() => {
-                                    props.setIsFollowingInProgress(true, u.id)
-                                    subscriptionPostAPI.postSubscription(u.id).then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.setIsFollowingInProgress(false, u.id)
-                                    })
-                                }}>Follow</Button>}
+                                onClick={() => {props.follow(u.id)}}>Follow</Button>}
                     </div>
 
                     <div className={classes.userInfo}>
