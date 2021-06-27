@@ -16,9 +16,9 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
     data: {
-        id: null,
-        login: null,
-        email: null,
+        id: 17363,
+        login: " JamesWhite10",
+        email: "max.migalin10@gmail.com",
     },
     isAuth: false
 }
