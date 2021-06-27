@@ -9,7 +9,6 @@ import {
 import Users from "./Users";
 import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
-import {usersAPI} from "../../api/api";
 
 
 interface IUsersProps {
@@ -21,10 +20,7 @@ interface IUsersProps {
     followingInProgress: []
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    setIsFetching: (isFetching: boolean) => void
     setIsFollowingInProgress: (followingInProgress: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
@@ -35,18 +31,11 @@ interface IUsersState {
 class UsersContainer extends React.Component<IUsersProps, IUsersState> {
 
     componentDidMount() {
-
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
-
     }
 
     onClickPageUsers = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        this.props.setIsFetching(true)
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.setIsFetching(false)
-            this.props.setUsers(data.items)
-        })
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {

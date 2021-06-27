@@ -1,9 +1,8 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {setAuthUserData} from "../../redux/auth-reducer";
+import {setUserData} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {headerAPI} from "../../api/api";
 
 interface IUsersProps {
     data: {
@@ -12,11 +11,7 @@ interface IUsersProps {
         email: string | null
     }
     isAuth: boolean
-    setAuthUserData: (data: {
-        id: number | null
-        login: string | null
-        email: string | null
-    }) => void
+    setUserData: () => void
 }
 
 interface IUsersState {
@@ -25,12 +20,7 @@ interface IUsersState {
 class HeaderContainer extends React.Component<IUsersProps, IUsersState> {
 
     componentDidMount() {
-
-     headerAPI.getHeader().then(data => {
-                if (data.resultCode === 0) {
-                    this.props.setAuthUserData(data.data)
-                }
-            })
+        this.props.setUserData()
     }
 
     render() {
@@ -47,4 +37,4 @@ type MapStatePropsType = {
     isAuth: boolean
 }
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({data: state.auth.data, isAuth: state.auth.isAuth})
-export default connect(mapStateToProps, {setAuthUserData})(HeaderContainer)
+export default connect(mapStateToProps, {setUserData})(HeaderContainer)

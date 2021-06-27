@@ -5,6 +5,8 @@ import {
     SetUserProfileType,
     UpdateNewPostActionType
 } from "./store";
+import {Dispatch} from "redux";
+import {profileAPI} from "../api/api";
 
 type InitialStateType = {
     profile: ProfileType | null
@@ -50,14 +52,20 @@ export const addPostActionCreator = (newPostText: string): AddPostActionType => 
     type: "ADD-POST",
     newPostText: newPostText
 })
-
 export const updateNewPostTextActionCreator = (newPost: string): UpdateNewPostActionType => ({
     type: "UPDATE-NEW-POST-TEXT",
     newPost: newPost
 })
-
 export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({
     type: "SET-USER-PROFILE", profile
 })
+
+export const setProfile = (userId: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getProfile(userId).then(data => {
+            dispatch(setUserProfile(data))
+        })
+    }
+}
 
 export default profileReducer;

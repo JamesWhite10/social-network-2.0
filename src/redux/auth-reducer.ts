@@ -2,6 +2,8 @@ import {
     ActionsType,
     SetUserData
 } from "./store";
+import {Dispatch} from "redux";
+import {headerAPI} from "../api/api";
 
 type InitialStateType = {
     data: {
@@ -38,5 +40,15 @@ export const setAuthUserData = ( data: {
     login: string | null
     email: string | null
 }): SetUserData => ({type: "SET-USER-DATA", data})
+
+export const setUserData = () => {
+    return (dispatch: Dispatch) => {
+        headerAPI.getHeader().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserData(data.data))
+            }
+        })
+    }
+}
 
 export default authReducer;
