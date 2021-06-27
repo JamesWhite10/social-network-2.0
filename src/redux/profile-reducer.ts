@@ -6,7 +6,7 @@ import {
     UpdateNewPostActionType
 } from "./store";
 import {Dispatch} from "redux";
-import {profileAPI} from "../api/api";
+import {usersAPI} from "../api/api";
 
 type InitialStateType = {
     profile: ProfileType | null
@@ -62,7 +62,7 @@ export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({
 
 export const setProfile = (userId: string) => {
     return (dispatch: Dispatch) => {
-        profileAPI.getProfile(userId).then(data => {
+        usersAPI.getProfile(userId).then(data => {
             dispatch(setUserProfile(data))
         })
     }

@@ -20,17 +20,14 @@ export const usersAPI = {
     deleteSubscription(id: number) {
         return instance.delete(`follow/${id}`)
             .then(response => response.data)
-    }
-}
-
-export const profileAPI = {
+    },
     getProfile(userId: string) {
         return instance.get(`profile/${+userId}`)
             .then(response => response.data)
     }
 }
 
-export const headerAPI = {
+export const authAPI = {
     getHeader() {
         return instance.get(`auth/me`)
             .then(response => response.data)
