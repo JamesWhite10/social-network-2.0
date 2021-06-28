@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {setProfile} from "../../redux/profile-reducer";
 import {PostType, ProfileType} from "../../redux/store";
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 
@@ -18,6 +18,8 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         props.setProfile(userId)
     }, [])
 
+    if (!props.isAuth) return <Redirect to={"/login"}/>
+
     return (
         <Profile {...props} profile={props.profile}/>
     )
@@ -28,6 +30,7 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         profile: ProfileType | null
         posts: Array<PostType>
         newPostText: string
+        isAuth: boolean
     }
 
     type MapDispatchPropsType = {
@@ -44,7 +47,8 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         return {
             profile: state.profilePage.profile,
             posts: state.profilePage.posts,
-            newPostText: state.profilePage.newPostText
+            newPostText: state.profilePage.newPostText,
+            isAuth: state.auth.isAuth
         }
     }
 
