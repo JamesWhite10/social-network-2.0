@@ -5,7 +5,6 @@ import {Message} from "./Message/Message";
 import Button from "@material-ui/core/Button";
 import {TextField} from "@material-ui/core";
 import {DialogsPropsType} from "./DialogsContainer";
-import { Redirect } from "react-router-dom";
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
@@ -21,8 +20,6 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
         let message = e.currentTarget.value
         props.onMessageChange(message)
     }
-
-    if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={classes.dialogs}>
