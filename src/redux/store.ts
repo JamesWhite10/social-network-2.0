@@ -11,7 +11,8 @@ export let store: StoreType = {
                 {id: 2, message: "It's my first Post!!", likeCount: 58},
                 {id: 3, message: "Are you ready....", likeCount: 17}
             ],
-            newPostText: "it-max.com"
+            newPostText: "it-max.com",
+            status: ""
         },
         dialogsPage: {
             dialogs:[
@@ -71,7 +72,7 @@ export type ActionsType = AddPostActionType | UpdateNewPostActionType
     | FollowActionType | UnFollowActionType
     | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
     | SetIsFetchingType | SetUserProfileType | SetUserData
-    | SetIsFollowingInProgressType
+    | SetIsFollowingInProgressType | SetStatusType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -143,6 +144,11 @@ export type SetUserData = {
     }
 }
 
+export type SetStatusType = {
+    type: "SET-STATUS"
+    status: string
+}
+
 export type MessageType = {
     id: number
     message: string
@@ -170,6 +176,7 @@ export type ProfilePageType = {
     profile: ProfileType | null
     posts: Array<PostType>
     newPostText: string
+    status: string | null
 }
 
 export type FriendsType = {

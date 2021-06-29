@@ -6,6 +6,8 @@ import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoType = {
     profile: ProfileType | null
+    status: string | null
+    updateStatus: (status: string) => void
 }
 
 export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
@@ -25,7 +27,7 @@ export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                 <img src={props.profile.photos.large} alt={"image"}/>
                 <div>{props.profile.contacts.facebook}</div>
                 <div>{props.profile.fullName}</div>
-                <ProfileStatus status={"Hello, my Friends!)))"}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
