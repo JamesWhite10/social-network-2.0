@@ -1,6 +1,24 @@
-.login {
+.loginBlock {
     display: flex;
-    align-content: center;
+    flex-direction: column;
     justify-content: center;
-    margin-top: 30px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.form {
+    background-color: moccasin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+    height: 190px;
+    border: 3px solid white;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.input {
+    width: 230px;
+    height: 20px;
 }
