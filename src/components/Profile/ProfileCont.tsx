@@ -31,7 +31,6 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 type MapStatePropsType = {
     profile: ProfileType | null
     posts: Array<PostType>
-    newPostText: string
     status: string | null
 }
 
@@ -51,8 +50,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         profile: state.profilePage.profile,
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
-        status: state.profilePage.status
+        status: state.profilePage.status,
     }
 }
 

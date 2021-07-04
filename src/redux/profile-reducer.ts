@@ -2,8 +2,7 @@ import {
     ActionsType,
     AddPostActionType,
     PostType, ProfileType, SetStatusType,
-    SetUserProfileType,
-    UpdateNewPostActionType
+    SetUserProfileType
 } from "./store";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
@@ -11,7 +10,6 @@ import {profileAPI, usersAPI} from "../api/api";
 type InitialStateType = {
     profile: ProfileType | null
     posts: Array<PostType>
-    newPostText: string
     status: string | null
 }
 
@@ -22,23 +20,16 @@ const initialState: InitialStateType = {
         {id: 2, message: "It's my first Post!!", likeCount: 58},
         {id: 3, message: "Are you ready....", likeCount: 17}
     ],
-    newPostText: "it-max.com",
     status: "",
 }
 
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case "ADD-POST":
-            const newPost = state.newPostText
+            const newPost = action.newPostText
             return {
                 ...state,
                 posts: [...state.posts, {id: 4, message: newPost, likeCount: 0}],
-                newPostText: ""
-            }
-        case "UPDATE-NEW-POST-TEXT":
-            return {
-                ...state,
-                newPostText: action.newPost
             }
         case "SET-USER-PROFILE":
             return {
@@ -56,9 +47,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 export const addPost = (newPostText: string): AddPostActionType => ({
     type: "ADD-POST", newPostText
 })
-export const updateNewPostText = (newPost: string): UpdateNewPostActionType => ({
-    type: "UPDATE-NEW-POST-TEXT", newPost
-})
+
 export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({
     type: "SET-USER-PROFILE", profile
 })
