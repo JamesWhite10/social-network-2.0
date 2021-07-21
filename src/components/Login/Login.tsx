@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Login.module.css";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../../common/FormControls/FormsControls";
-import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
@@ -12,6 +11,7 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    error: string
 }
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
@@ -22,8 +22,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field className={classes.input}
                        placeholder={"Email"}
                        name={"email"}
-                       component={Input}
-                       validate={[required]}/>
+                       component={Input}/>
             </div>
             <div>
                 <div>Password:</div>
@@ -31,12 +30,15 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        placeholder={"Password"}
                        name={"password"}
                        type={"password"}
-                       component={Input}
-                       validate={[required]}/>
+                       component={Input}/>
             </div>
             <div>
                 <Field type={"checkbox"} name={"rememberMe"} component={"input"}/> Remember me
             </div>
+            { props.error && <div className={classes.formSummaryError}>
+                {props.error}
+            </div>
+            }
             <div>
                 <button>Sign In</button>
             </div>
@@ -49,6 +51,7 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'email'})(LoginForm)
 type LoginPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void
     isAuth: boolean | null
+    error: string
 }
 
 const Login: React.FC<LoginPropsType> = (props) => {
