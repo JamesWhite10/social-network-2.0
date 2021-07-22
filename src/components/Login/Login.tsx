@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
+import {required} from "../../utils/validators/validators";
 
 type FormDataType = {
     email: string
@@ -22,7 +23,8 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field className={classes.input}
                        placeholder={"Email"}
                        name={"email"}
-                       component={Input}/>
+                       component={Input}
+                       validate={[required]}/>
             </div>
             <div>
                 <div>Password:</div>
@@ -30,12 +32,14 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        placeholder={"Password"}
                        name={"password"}
                        type={"password"}
-                       component={Input}/>
+                       component={Input}
+                       validate={[required]}/>
             </div>
             <div>
                 <Field type={"checkbox"} name={"rememberMe"} component={"input"}/> Remember me
             </div>
-            { props.error && <div className={classes.formSummaryError}>
+            {props.error &&
+            <div className={classes.formSummaryError}>
                 {props.error}
             </div>
             }
@@ -46,7 +50,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     )
 }
 
-const LoginReduxForm = reduxForm<FormDataType>({form: 'email'})(LoginForm)
+const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 type LoginPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void

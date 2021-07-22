@@ -57,7 +57,7 @@ export type SetIsFollowingInProgressType = {
 export type SetUserData = {
     type: "SET-USER-DATA"
     payload: {
-        id: number | null
+        id: string | null
         email: string | null
         login: string | null
         isAuth: boolean | null
