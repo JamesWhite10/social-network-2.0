@@ -8,7 +8,7 @@ import {AppStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 
 type InitialStateType = {
-    id: number | null
+    id: string | null
     email: string | null
     login: string | null
     isAuth: boolean | null
@@ -35,7 +35,7 @@ const authReducer = (state: InitialStateType = initialState, action: ActionsType
     }
 }
 
-export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean | null): SetUserData =>
+export const setAuthUserData = (id: string | null, email: string | null, login: string | null, isAuth: boolean | null): SetUserData =>
     ({type: "SET-USER-DATA", payload: {id, email, login, isAuth}})
 
 //Thunk
@@ -57,7 +57,7 @@ export const login = (email: string, password: string, rememberMe: boolean) => {
             if (data.resultCode === 0) {
                 dispatch(setUserData())
             } else {
-                let message = data.data.messages.length > 0 ? data.data.messages[0] : "Some error"
+                let message = data.messages.length > 0 ? data.messages[0] : "Some error"
                 dispatch(stopSubmit("login", {_error: message}))
             }
         })

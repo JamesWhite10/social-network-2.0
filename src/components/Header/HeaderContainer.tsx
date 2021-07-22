@@ -5,7 +5,7 @@ import {logOut, setUserData} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
 interface IUsersProps {
-    id: number | null
+    id: string | null
     email: string | null
     login: string | null
     isAuth: boolean | null
@@ -28,7 +28,7 @@ class HeaderContainer extends React.Component<IUsersProps, IUsersState> {
 }
 
 type MapStatePropsType = {
-    id: number | null
+    id: string | null
     email: string | null
     login: string | null
     isAuth: boolean | null

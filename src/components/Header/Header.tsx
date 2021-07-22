@@ -4,7 +4,7 @@ import classes from "./Header.module.css"
 import {Button} from "@material-ui/core";
 
 type HeaderPropsType = {
-    id: number | null
+    id: string | null
     email: string | null
     login: string | null
     isAuth: boolean | null
