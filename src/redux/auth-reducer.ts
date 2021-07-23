@@ -39,11 +39,11 @@ export const setAuthUserData = (id: string | null, email: string | null, login: 
     ({type: "SET-USER-DATA", payload: {id, email, login, isAuth}})
 
 //Thunk
-type DispatchThunkType = ThunkDispatch<Promise<void>, AppStateType, ActionsType>
+export type DispatchThunkType = ThunkDispatch<Promise<void>, AppStateType, ActionsType>
 
-export const setUserData = () => {
+export const getAuthUserData = () => {
     return (dispatch: DispatchThunkType) => {
-        authAPI.getHeader().then(data => {
+        authAPI.me().then(data => {
             if (data.resultCode === 0) {
                 const {id, email, login} = data.data
                 dispatch(setAuthUserData(id, email, login, true))
@@ -55,7 +55,7 @@ export const login = (email: string, password: string, rememberMe: boolean) => {
     return (dispatch: DispatchThunkType | any) => {
         authAPI.login(email, password, rememberMe).then(data => {
             if (data.resultCode === 0) {
-                dispatch(setUserData())
+                dispatch(getAuthUserData())
             } else {
                 let message = data.messages.length > 0 ? data.messages[0] : "Some error"
                 dispatch(stopSubmit("login", {_error: message}))

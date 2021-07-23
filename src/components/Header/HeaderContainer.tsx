@@ -1,7 +1,7 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {logOut, setUserData} from "../../redux/auth-reducer";
+import {logOut} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
 interface IUsersProps {
@@ -9,7 +9,6 @@ interface IUsersProps {
     email: string | null
     login: string | null
     isAuth: boolean | null
-    setUserData: () => void
     logOut: () => void
 }
 
@@ -17,10 +16,6 @@ interface IUsersState {
 }
 
 class HeaderContainer extends React.Component<IUsersProps, IUsersState> {
-
-    componentDidMount() {
-        this.props.setUserData()
-    }
 
     render() {
         return <Header {...this.props}/>
@@ -39,4 +34,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     login: state.auth.login,
     isAuth: state.auth.isAuth
 })
-export default connect(mapStateToProps, {setUserData, logOut})(HeaderContainer)
+export default connect(mapStateToProps, {logOut})(HeaderContainer)
