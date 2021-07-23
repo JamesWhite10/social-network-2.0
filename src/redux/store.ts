@@ -1,7 +1,7 @@
 export type ActionsType = AddPostActionType | AddMessageActionType | FollowActionType | UnFollowActionType
     | SetUsersActionType | SetCurrentPageType | SetTotalUsersCountType
     | SetIsFetchingType | SetUserProfileType | SetUserData
-    | SetIsFollowingInProgressType | SetStatusType
+    | SetIsFollowingInProgressType | SetStatusType | SetInitializedType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -67,6 +67,11 @@ export type SetUserData = {
 export type SetStatusType = {
     type: "SET-STATUS"
     status: string
+}
+
+export type SetInitializedType = {
+    type: "SET-INITIALIZED"
+    initialized: boolean
 }
 
 export type MessageType = {
