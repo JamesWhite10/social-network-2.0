@@ -17,7 +17,7 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         if (!userId) {
             userId = props.authorizedUserId
             if (!userId) {
-                props.history.push("/login")
+               return;
             }
         }
         props.getUserProfile(userId)
