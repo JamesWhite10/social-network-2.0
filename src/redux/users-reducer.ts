@@ -85,11 +85,12 @@ export const setIsFollowingInProgress = (followingInProgress: boolean, userId: n
     userId,
 }) // для дизейбла иконки баттона
 
-export const getUsers = (currentPage: number, pageSize: number) => {    //санк креэйтор!!!
-   return (dispatch: Dispatch) => {    //санка!!!
+export const requestUsers = (page: number, pageSize: number) => {    //санк креэйтор!!!
+    return (dispatch: Dispatch) => {    //санка!!!
         dispatch(setIsFetching(true))
+        dispatch(setCurrentPage(page))
 
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
+        usersAPI.getUsers(page, pageSize).then(data => {
             dispatch(setIsFetching(false))
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))
