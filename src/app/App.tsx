@@ -26,7 +26,9 @@ const App = () => {
     }, [])
 
     if (!initialized) {
-       return <Preloader/>
+       return <div style={{textAlign: "center"}}>
+           <Preloader/>
+       </div>
     }
 
     return (

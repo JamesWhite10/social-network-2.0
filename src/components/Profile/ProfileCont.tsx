@@ -34,7 +34,7 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 type MapStatePropsType = {
     profile: ProfileType | null
     posts: Array<PostType>
-    status: string | null
+    status: string | ReadonlyArray<string> | number;
     authorizedUserId: string | null
     isAuth: boolean | null
 }

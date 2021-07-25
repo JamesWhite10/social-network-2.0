@@ -10,7 +10,7 @@ import {profileAPI, usersAPI} from "../api/api";
 type InitialStateType = {
     profile: ProfileType | null
     posts: Array<PostType>
-    status: string | null
+    status: string | ReadonlyArray<string> | number;
 }
 
 const initialState: InitialStateType = {

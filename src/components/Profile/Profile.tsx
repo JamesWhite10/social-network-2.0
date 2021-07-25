@@ -5,7 +5,7 @@ import {ProfileType} from "../../redux/store";
 
 type ProfilePropsType = {
     profile: ProfileType | null
-    status: string | null
+    status: string | ReadonlyArray<string> | number;
     updateStatus: (status: string) => void
 }
 
