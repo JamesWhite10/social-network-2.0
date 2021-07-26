@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 
 interface IProfileStatusProps {
-    status: string | null
+    status: string | ReadonlyArray<string> | number
     updateStatus: (status: string) => void
 }
 

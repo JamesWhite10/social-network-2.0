@@ -3,11 +3,11 @@ import classes from "./ProfileInfo.module.css"
 import {ProfileType} from "../../../redux/store";
 import Preloader from "../../../common/Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
-import {ProfileImage} from "./ProfileImage";
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileInfoType = {
     profile: ProfileType | null
-    status: string | null
+    status: string | ReadonlyArray<string> | number;
     updateStatus: (status: string) => void
 }
 
@@ -26,10 +26,10 @@ export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
             </div>
             <div className={classes.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={"image"}/>
-                <ProfileImage/>
+
                 <div>{props.profile.contacts.facebook}</div>
                 <div>{props.profile.fullName}</div>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
