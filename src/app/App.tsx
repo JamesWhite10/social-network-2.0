@@ -25,11 +25,11 @@ const App = () => {
         dispatch(initializeApp())
     }, [])
 
-    if (!initialized) {
+  /*  if (!initialized) {
        return <div style={{textAlign: "center"}}>
            <Preloader/>
        </div>
-    }
+    }*/
 
     return (
         <div className="app-wrapper">
