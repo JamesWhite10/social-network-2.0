@@ -35,7 +35,7 @@ export const NavBar = () => {
             <div className={classes.friends}>
                 <NavLink to="/friends" activeClassName={classes.activeLink}>Friends</NavLink>
                 <div className={classes.image}>
-                    {friendElement}<button className={classes.button}>Message</button>
+                    {friendElement}
                 </div>
             </div>
         </div>
