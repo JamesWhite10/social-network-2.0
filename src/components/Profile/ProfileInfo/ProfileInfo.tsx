@@ -25,7 +25,7 @@ export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                 <img src="https://a.espncdn.com/photo/2016/0112/NBARankATPG_1296x518.jpg" alt={"image"}/>
             </div>
             <div className={classes.descriptionBlock}>
-                <img src={props.profile.photos.large} alt={"image"}/>
+
 
                 <div>{props.profile.contacts.facebook}</div>
                 <div>{props.profile.fullName}</div>

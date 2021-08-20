@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import {NavBar} from "../components/NavBar/NavBar";
-import {Redirect, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {News} from "../components/News/News";
 import {Music} from "../components/Music/Music";
 import {Settings} from "../components/Settings/Settings";
@@ -26,9 +26,9 @@ const App = () => {
     }, [])
 
     if (!initialized) {
-        return <Redirect to={"/login"} /> /*<div style={{textAlign: "center", marginTop: "150px"}}>
+        return <div style={{textAlign: "center", marginTop: "150px"}}>
             <Preloader/>
-        </div>*/
+        </div>
     }
 
     return (
